@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Battery Life Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+
+        <!-- styling starts -->
+        <style>
+            #calc {
+                width: 420px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html content starts -->
+        <div class="container text-center my-5 border rounded" id="calc">
+            <h4 class="mt-2">Battery Life Calculator</h4>
+            <strong>Battery Storage Rating Calculation Formula:</strong>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1" id="basic-addon3">BLT =
+                        (Capacity of battery &#47; Load current ) * 0.7</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Capacity Rating of Battery</span>
+                </div>
+                <input type="text" class="form-control" id="capacityRating" placeholder="Milli Amp Hours">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Load Current</span>
+                </div>
+                <input type="text" class="form-control" id="loadCurrent" placeholder="Milli Amps">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Estimated Battery Life</span>
+                </div>
+                <input type="text" class="form-control" id="batteryLife" placeholder="Hours">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate "x"</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Battery Life Calculator?</h5>
+            <p>The procedure to use the battery life calculator is as follows:
+
+                <br>
+
+                <b>Step 1:</b> Enter the load current, capacity of the battery and x for the unknown in the
+                input
+                field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate x” to get the battery life. <br>
+
+                <b>Step 3:</b> Finally, the battery life for the given capacity and load current will be
+                displayed
+                in the output field. <br>
+            </p>
+            <h5> What is Meant by Battery Life?</h5>
+            <p> The battery life is the performance measure which is used to determine the lifetime of the
+                battery
+                or the longevity. A battery is an electronic device which can be charged using the electric
+                device.
+                A battery is a combination of two or more electrochemical cells. The batteries are classified as
+                the
+                primary battery and the secondary battery. The primary batteries are not rechargeable and it is
+                considered as use and throw batteries. On the other hand, the secondary batteries are
+                rechargeable
+                and can be charged at any time.
+            </p>
+        </div>
+
+        <!-- html content ends -->
+
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let t = document.getElementById("capacityRating");
+                let T = t.value;
+                let k = document.getElementById("loadCurrent");
+                let K = k.value;
+                let a = document.getElementById("batteryLife");
+                let A = a.value;
+                let Output = document.getElementById("output");
+                if (isNaN(T) && T != 'x' || T == "") {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control");
+                }
+                if (isNaN(K) && K != 'x' || K == "") {
+                    k.removeAttribute("class");
+                    k.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    k.removeAttribute("class");
+                    k.setAttribute("class", "form-control");
+                }
+                if (isNaN(A) && A != 'x' || A == "") {
+                    a.removeAttribute("class");
+                    a.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    a.removeAttribute("class");
+                    a.setAttribute("class", "form-control");
+                }
+                let capacityRating = (A * K * 1.0) / 0.7;
+                let loadCurrent = (T / (A * 1.0)) * 0.7;
+                let batteryLife = (T / (K * 1.0)) * 0.7;
+                if (Output.value != NaN) {
+                    if (A == 'x' && K != 'x' && T != 'x') Output.innerText = batteryLife;
+                    else if (K == 'x' && A != 'x' && T != 'x') Output.innerText = loadCurrent;
+                    else if (T == 'x' && K != 'x' && A != 'x') Output.innerText = capacityRating;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Gay Lussacs Law Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 450px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Gay Lussacs Law Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1" id="basic-addon3">Gay Lussac's Law
+                        Formula:
+                        P<sub><strong>i</strong></sub>&nbsp;/&nbsp;T<sub><strong>i</strong></sub>&nbsp;=&nbsp;P<sub><strong>ƒ</strong></sub>&nbsp;/&nbsp;T<sub><strong>ƒ</strong></sub>
+                    </span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Initial Pressure (P<sub>i</sub>):</span>
+                </div>
+                <input type="text" class="form-control" id="initialPressure" placeholder="Pa">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Initial Temperature (T<sub>i</sub>): </span>
+                </div>
+                <input type="text" class="form-control" id="initialTemperature" placeholder="K">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Final Pressure (P<sub>f</sub>):</span>
+                </div>
+                <input type="text" class="form-control" id="finalPressure" placeholder="Pa">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Final Temperature (T<sub>f</sub>): </span>
+                </div>
+                <input type="text" class="form-control" id="finalTemperature" placeholder="K">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate 'x'</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let pi = document.getElementById("initialPressure");
+                let Pi = pi.value;
+                let ti = document.getElementById("initialTemperature");
+                let Ti = ti.value;
+                let pf = document.getElementById("finalPressure");
+                let Pf = pf.value;
+                let tf = document.getElementById("finalTemperature");
+                let Tf = tf.value;
+                let Output = document.getElementById("output");
+                if (isNaN(Pi) && Pi != 'x' || Pi == "") {
+                    pi.removeAttribute("class");
+                    pi.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    pi.removeAttribute("class");
+                    pi.setAttribute("class", "form-control");
+                }
+                if (isNaN(Ti) && Ti != 'x' || Ti == "") {
+                    ti.removeAttribute("class");
+                    ti.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ti.removeAttribute("class");
+                    ti.setAttribute("class", "form-control");
+                }
+                if (isNaN(Pf) && Pf != 'x' || Pf == "") {
+                    pf.removeAttribute("class");
+                    pf.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    pf.removeAttribute("class");
+                    pf.setAttribute("class", "form-control");
+                }
+                if (isNaN(Tf) && Tf != 'x' || Tf == "") {
+                    tf.removeAttribute("class");
+                    tf.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    tf.removeAttribute("class");
+                    tf.setAttribute("class", "form-control");
+                }
+                let pinitial = (Pf * Ti * 1.0) / Tf;
+                let tinitial = (Pi * Tf * 1.0) / Pf;
+                let pfinal = (Pi * Tf * 1.0) / Ti;
+                let tfinal = (Pf * Ti * 1.0) / Pi;
+                if (Output.value != NaN) {
+                    if (Pi == 'x' && Pf != 'x' && Ti != 'x' && Tf != 'x') Output.innerText = pinitial;
+                    else if (Pf == 'x' && Pi != 'x' && Ti != 'x' && Tf != 'x') Output.innerText = pfinal;
+                    else if (Ti == 'x' && Pf != 'x' && Pi != 'x' && Tf != 'x') Output.innerText = tinitial;
+                    else if (Tf == 'x' && Pf != 'x' && Pi != 'x' && Ti != 'x') Output.innerText = tfinal;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

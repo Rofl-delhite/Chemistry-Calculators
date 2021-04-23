@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Theoretical Yield Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 450px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Theoretical Yield Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1" id="basic-addon3">
+                        Theoretical Yield = (Actual Yield / Percent Yield) × 100%
+                    </span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Actual Yield =</span>
+                </div>
+                <input type="text" class="form-control" id="actualYield" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Percent Yield =</span>
+                </div>
+                <input type="text" class="form-control" id="percentYield" placeholder="%">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Theoretical Yield =</span>
+                </div>
+                <input type="text" class="form-control" id="theoreticalYield=" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate 'x'</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Theoretical Yield Calculator?</h5>
+            <p>The procedure to use the theoretical yield calculator is as follows:<br>
+                <strong>Step 1:</strong> Enter the actual yield, percent yield and x for the unknown in the input
+                field.<br>
+                <strong>Step 2:</strong> Now click the button “Calculate x” to get the theoretical yield value.<br>
+                <strong>Step 3:</strong> Finally, the theoretical yield of the chemical reaction will be displayed in
+                the output field.
+            </p>
+            <h5>What is Meant by Theoretical Yield?</h5>
+            <p>In a chemical reaction, the theoretical yield is defined as the amount of product predicted by
+                stoichiometry based on the number of complete reactants. Whereas the actual yield is defined as the
+                amount of product actually produced by the reactant in the chemical reaction. The percentage yield can
+                be calculated by dividing the actual yield to the theoretical yield. The theoretical yield is
+                represented by moles or grams. The theoretical yield formula is given by<br>
+                <strong>Theoretical yield = (Actual Yield/Percentage yield)× 100</strong></p>
+        </div>
+        <!-- html code ends -->
+
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let ay = document.getElementById("actualYield");
+                let AY = ay.value;
+                let py = document.getElementById("percentYield");
+                let PY = py.value;
+                let ty = document.getElementById("theoreticalYield=");
+                let TY = ty.value;
+                let Output = document.getElementById("output");
+                if (isNaN(AY) && AY != 'x' || AY == "") {
+                    ay.removeAttribute("class");
+                    ay.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ay.removeAttribute("class");
+                    ay.setAttribute("class", "form-control");
+                }
+                if (isNaN(PY) && PY != 'x' || PY == "") {
+                    py.removeAttribute("class");
+                    py.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    py.removeAttribute("class");
+                    py.setAttribute("class", "form-control");
+                }
+                if (isNaN(TY) && TY != 'x' || TY == "") {
+                    ty.removeAttribute("class");
+                    ty.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ty.removeAttribute("class");
+                    ty.setAttribute("class", "form-control");
+                }
+                let actualYield = (PY * TY * 1.0) / 100;
+                let percentYield = (AY / (TY * 1.0)) * 100;
+                let theoreticalYield = (AY / (PY * 1.0)) * 100;
+                if (Output.value != NaN) {
+                    if (AY == 'x' && PY != 'x' && TY != 'x') Output.innerText = actualYield;
+                    else if (PY == 'x' && AY != 'x' && TY != 'x') Output.innerText = percentYield;
+                    else if (TY == 'x' && PY != 'x' && AY != 'x') Output.innerText = theoreticalYield;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+
+    </div>
+</body>
+
+</html>

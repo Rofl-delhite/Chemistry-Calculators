@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Moles to Grams Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 500px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Moles to Grams Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1">
+                        Formula:Moles to Grams: Grams = Moles*Formula Weight
+                    </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Moles =</span>
+                </div>
+                <input type="text" class="form-control" id="moles" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Formula Weight =</span>
+                </div>
+                <input type="text" class="form-control" id="formulaWeight" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Solve</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Moles to Grams Calculator?</h5>
+            <p>The procedure to use the moles to grams calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the moles and formula weight in the input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Solve” to get the conversion value. <br>
+
+                <b>Step 3:</b> Finally, the conversion from moles to grams will be displayed in the output field.<br>
+            </p>
+            <h5>What is Meant by Moles to Grams?</h5>
+            <p>In Chemistry, the moles to grams conversion represents the conversion of moles into grams. These
+                measurements are used to determine the number of substances. To convert the moles into grams, multiply
+                the mass of the substance by the molecular weight/ formula weight. In other words, it is the product of
+                the mass of the substance and its molecular weight. Thus, the conversion of moles to grams formula is :
+                <br>
+
+                <strong>Grams = Mass of the substance (in moles) × Molecular weight</strong>
+            </p>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let m = document.getElementById("moles");
+                let M = m.value;
+                let fw = document.getElementById("formulaWeight");
+                let FW = fw.value;
+                let Output = document.getElementById("output");
+                if (isNaN(M) || M == "") {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control");
+                }
+                if (isNaN(FW) || FW == "") {
+                    fw.removeAttribute("class");
+                    fw.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    fw.removeAttribute("class");
+                    fw.setAttribute("class", "form-control");
+                }
+                let grams = M * FW;
+                if (!isNaN(grams)) {
+                    Output.innerText = grams;
+                }
+                else {
+                    alert("Have you entered all the values ? please check again.");
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

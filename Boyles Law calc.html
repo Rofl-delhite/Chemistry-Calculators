@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Ideal Gas Law Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+
+        <!-- styling starts -->
+        <style>
+            #calc {
+                width: 420px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html content starts -->
+        <div class="container text-center my-5 border rounded" id="calc">
+            <h4 class="mt-2">Ideal gas Law Calculator</h4>
+            <p class="text-center">Gas Equation: <strong>PV = nRT</strong> , where <strong>R = 8.314</strong> joules per
+                mole
+                degree Kelvin</p>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Temperature (T)</span>
+                </div>
+                <input type="text" class="form-control" id="temperature" placeholder="K">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Pressure (P)</span>
+                </div>
+                <input type="text" class="form-control" id="pressure" placeholder="kPa">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Moles of Gas(n)</span>
+                </div>
+                <input type="text" class="form-control" id="moles" placeholder="moles">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume (V)</span>
+                </div>
+                <input type="text" class="form-control" id="volume" placeholder="L">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate "x"</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Ideal Gas Law Calculator?</h5>
+            <p>The procedure to use the ideal gas law calculator is as follows:
+
+                <br>
+
+                <b>Step 1:</b> Enter the values such as pressure, volume, temperature, number of moles and x for
+                the unknown value in the input field
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate x” to get the value. <br>
+
+                <b>Step 3:</b> Finally, the unknown measure of the ideal gas using the ideal gas law will be
+                displayed in the output field <br>
+            </p>
+            <h5>What is Meant by the Ideal Gas Law?</h5>
+            <p> In Physics, the ideal gas is defined as the hypothetical gas. It is also known as the universal
+                gas law. The molecules in the gas occupy the negligible space and it should not have any
+                interactions in between. As a result, it should obey the gas law. The ideal gas law describes
+                the relationship between the properties of the ideal gas. It is defined by the formula
+
+                <strong> PV = nRT</strong>
+
+                ,where<br>
+
+                P – Pressure<br>
+
+                V – Volume<br>
+
+                R – Gas constant<br>
+
+                T – Temperature<br>
+
+                n – Number of moles<br>
+            </p>
+
+        </div>
+        <!-- html content ends -->
+
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let t = document.getElementById("temperature");
+                let T = t.value;
+                let p = document.getElementById("pressure");
+                let P = p.value;
+                let m = document.getElementById("moles");
+                let M = m.value;
+                let v = document.getElementById("volume");
+                let V = v.value;
+                let Output = document.getElementById("output");
+                if (isNaN(T) && T != 'x' || T == "") {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control");
+                }
+                if (isNaN(P) && P != 'x' || P == "") {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control");
+                }
+                if (isNaN(M) && M != 'x' || M == "") {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control");
+                }
+                if (isNaN(V) && V != 'x' || V == "") {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control");
+                }
+                let R = 8.314;
+                let temperature = (P * V * 1.0) / (M * R);
+                let pressure = (M * R * T * 1.0) / V;
+                let moles = (P * V * 1.0) / (R * T);
+                let volume = (M * R * T * 1.0) / P;
+                if (Output.value != NaN) {
+                    if (T == 'x' && P != 'x' && M != 'x' && V != 'x') Output.innerText = temperature;
+                    else if (P == 'x' && T != 'x' && M != 'x' && V != 'x') Output.innerText = pressure;
+                    else if (M == 'x' && P != 'x' && T != 'x' && V != 'x') Output.innerText = moles;
+                    else if (V == 'x' && P != 'x' && T != 'x' && M != 'x') Output.innerText = volume;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</htm>

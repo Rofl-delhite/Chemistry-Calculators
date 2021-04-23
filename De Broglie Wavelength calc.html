@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>De Broglie Wavelength Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 500px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">De Broglie Wavelength Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1"><strong>Formula: </strong> De Broglie Wavelength
+                        (λ) =
+                        (h*c) / E</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Planck’s constant (h) = 6.626 ×
+                        10<sup>−34&nbsp;</sup>J−s</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Velocity of Light (c) = 3 ×
+                        10<sup>8</sup> &nbsp;m/s</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Enter the unknown value as ‘x’</span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">De Broglie Wavelength(λ):</span>
+                </div>
+                <input type="text" class="form-control" id="wavelength" placeholder="A&deg;">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Energy of Photon (E):</span>
+                </div>
+                <input type="text" class="form-control" id="energy" placeholder="eV">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate</button>
+                </div>
+            </div>
+            <hr>
+            <h5>What is Meant by De Broglie Wavelength?</h5>
+            <p> In Physics, the De Broglie wavelength is defined as the wavelength in which the object is associated
+                with its mass and momentum. It is noted that the object force and the De Broglie wavelength are
+                inversely proportional to each other. This equation shows a relationship between wave nature and
+                particle nature of a body. Mathematically, de Broglie wavelength formula can be denoted as:
+
+                <strong> λ = h/p</strong> (or) <strong> λ = h/mv </strong><br>
+
+                Where,<br>
+
+                λ is the wavelength <br>
+
+                p is the momentum of the photon <br>
+
+                h is the Planck’s constant = 6.626 × 10 <sup>−34</sup> J−s <br>
+            </p>
+            <h5>How to Use the De Broglie Wavelength Calculator?</h5>
+            <p>The procedure to use the De Broglie wavelength calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the photon energy and x for the unknown value in the input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate x” to get the wavelength. <br>
+
+                <b>Step 3:</b> Finally, the unknown value using the De Broglie wavelength will be displayed in the
+                output field. <br>
+            </p>
+        </div>
+
+        <!-- html code ends -->
+    </div>
+    <!-- scripting starts -->
+    <script>
+        document.getElementById('button').addEventListener('click', () => {
+            let w = document.getElementById("wavelength");
+            let W = w.value;
+            let e = document.getElementById("energy");
+            let E = e.value;
+            let Output = document.getElementById("output");
+            let h = 6.626 * Math.pow(10, -34);
+            let c = 3 * Math.pow(10, 8);
+            if (isNaN(W) && W != 'x' || W == "") {
+                w.removeAttribute("class");
+                w.setAttribute("class", "form-control border-danger");
+            }
+            else {
+                w.removeAttribute("class");
+                w.setAttribute("class", "form-control");
+            }
+            if (isNaN(E) && E != 'x' || E == "") {
+                e.removeAttribute("class");
+                e.setAttribute("class", "form-control border-danger");
+            }
+            else {
+                e.removeAttribute("class");
+                e.setAttribute("class", "form-control");
+            }
+            let wavelength = (h * c * 1.0) / (E);
+            let energy = (h * c * 1.0) / (W);
+            if (Output.value != NaN) {
+                if (W == 'x' && E != 'x') Output.innerText = wavelength;
+                else if (E == 'x' && W != 'x') Output.innerText = energy;
+                else {
+                    alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                }
+            }
+        })
+    </script>
+    <!-- scripting ends -->
+</body>
+
+</html>

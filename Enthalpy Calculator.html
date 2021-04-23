@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Enthalpy Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 500px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Enthalpy Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1"><strong>Formula:</strong>&nbsp;Enthalpy
+                        (Q<sub>P</sub>) = Δ E
+                        + P Δ V</span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Internal energy of Products = </span>
+                </div>
+                <input type="text" class="form-control" id="energyProducts" placeholder="Joules">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Internal energy of Reactants =</span>
+                </div>
+                <input type="text" class="form-control" id="energyReactants" placeholder="Joules">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Pressure of system = </span>
+                </div>
+                <input type="text" class="form-control" id="pressure" placeholder="pascals">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume of Products =</span>
+                </div>
+                <input type="text" class="form-control" id="volumeProducts" placeholder="cubic meters">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume of Reactants =</span>
+                </div>
+                <input type="text" class="form-control" id="volumeReactants" placeholder="cubic meters">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate Enthalpy</button>
+                </div>
+            </div>
+            <hr>
+            <h5>What is Meant by Enthalpy?</h5>
+            <p>In Physics, enthalpy is defined as the sum of the internal energy and the product of the pressure of the
+                given thermodynamic system. It represents the state of the system. It is not a measure of heat transfer.
+                In short, enthalpy is used to measure the energy of the system. Enthalpy is expressed by the letter “H”.
+                Thus, the formula to calculate enthalpy is given by: <br>
+
+                <strong>Enthalpy, H = U + PV </strong><br>
+
+                Where, <br>
+
+                U – Internal Energy <br>
+
+                P – Pressure <br>
+
+                V – Volume <br>
+            </p>
+            <h5>How to Use the Enthalpy Calculator?</h5>
+            <p>The procedure to use the enthalpy calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the internal energy, volume and pressure in the input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate Enthalpy” to get the result. <br>
+
+                <b>Step 3:</b> Finally, the enthalpy of the system will be displayed in the output field.<br>
+            </p>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let ep = document.getElementById("energyProducts");
+                let EP = ep.value;
+                let er = document.getElementById("energyReactants");
+                let ER = er.value;
+                let p = document.getElementById("pressure");
+                let P = p.value;
+                let vp = document.getElementById("volumeProducts");
+                let VP = vp.value;
+                let vr = document.getElementById("volumeReactants");
+                let VR = vr.value;
+                let Output = document.getElementById("output");
+                if (isNaN(EP) || EP.includes(" ") || EP == "") {
+                    ep.removeAttribute("class");
+                    ep.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ep.removeAttribute("class");
+                    ep.setAttribute("class", "form-control");
+                }
+                if (isNaN(ER) || ER.includes(" ") || ER == "") {
+                    er.removeAttribute("class");
+                    er.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    er.removeAttribute("class");
+                    er.setAttribute("class", "form-control");
+                }
+                if (isNaN(P) || P.includes(" ") || P == "") {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control");
+                }
+                if (isNaN(VP) || VP.includes(" ") || VP == "") {
+                    vp.removeAttribute("class");
+                    vp.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    vp.removeAttribute("class");
+                    vp.setAttribute("class", "form-control");
+                }
+                if (isNaN(VR) || VR.includes(" ") || VR == "") {
+                    vr.removeAttribute("class");
+                    vr.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    vr.removeAttribute("class");
+                    vr.setAttribute("class", "form-control");
+                }
+                let enthalpy = Math.abs(EP - ER) + P * (Math.abs(VP - VR));
+                if (!isNaN(EP) && EP != "" && !isNaN(ER) && ER != "" && !isNaN(P) && P != "" &&
+                    !isNaN(VP) && VP != "" && !isNaN(VR) && VR != "") {
+                    Output.innerText = `${enthalpy} Joules`;
+                }
+                else {
+                    alert(`Have you entered all the values? Please put all the values. Then the enthalpy will be calculated.`);
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

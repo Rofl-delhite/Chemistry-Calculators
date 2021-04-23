@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Molarity Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 450px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Molarity Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Concentration of solute (M) :</span>
+                </div>
+                <input type="text" class="form-control" id="concentration" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Number of moles (n) :</span>
+                </div>
+                <input type="text" class="form-control" id="moles" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume of solution (L) :</span>
+                </div>
+                <input type="text" class="form-control" id="volume" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate the unknown</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Molarity Calculator?</h5>
+            <p>The procedure to use the molarity calculator is as follows:<br>
+                <strong>Step 1:</strong> Enter the number of moles, volume, and x for the unknown in the respective
+                input field. <br>
+                <strong>Step 2:</strong> Now click the button “Calculate the Unknown” to get the solution.<br>
+                <strong>Step 3:</strong> Finally, the molarity of the chemical solution will be displayed in the output
+                field.
+            </p>
+            <h5>What is Meant by the Molarity?</h5>
+            <p>In Chemistry, the molarity is defined as the concentration of the solution. It is also known as the
+                concentration of the chemical solution. The molarity of a chemical solution can be calculated by the
+                number of moles of the solute per litre of the solution. The unit to indicate molarity is moles/litre.
+                It is the most common unit to measure to determine the chemical solution concentration. The formula to
+                molarity is given by<br>
+                <strong>Molar Concentration, M = Number of Moles of Solute / Volume of the solution in litres.</strong>
+            </p>
+        </div>
+        <!-- html code ends -->
+
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let c = document.getElementById("concentration");
+                let C = c.value;
+                let m = document.getElementById("moles");
+                let M = m.value;
+                let v = document.getElementById("volume");
+                let V = v.value;
+                let Output = document.getElementById("output");
+                if (isNaN(C) && C != 'x' || C == "") {
+                    c.removeAttribute("class");
+                    c.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    c.removeAttribute("class");
+                    c.setAttribute("class", "form-control");
+                }
+                if (isNaN(M) && M != 'x' || M == "") {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control");
+                }
+                if (isNaN(V) && V != 'x' || V == "") {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control");
+                }
+                let concentration = M / (V * 1.0);
+                let moles = C * V;
+                let volume = M * C;
+                if (Output.value != NaN) {
+                    if (C == 'x' && M != 'x' && V != 'x') Output.innerText = concentration;
+                    else if (M == 'x' && C != 'x' && V != 'x') Output.innerText = moles;
+                    else if (V == 'x' && M != 'x' && C != 'x') Output.innerText = volume;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+
+    </div>
+</body>
+
+</html>

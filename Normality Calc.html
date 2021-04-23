@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Normality Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 450px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Normality Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1" id="basic-addon3">
+                        Normality = (Equivalent of solute / Liters of Solution)
+                    </span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1" id="basic-addon3">Enter
+                        the
+                        unknown value as "x" </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Equivalent of solute =</span>
+                </div>
+                <input type="text" class="form-control" id="equivalent" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Liters of Solution =</span>
+                </div>
+                <input type="text" class="form-control" id="liters" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Normality =</span>
+                </div>
+                <input type="text" class="form-control" id="normality" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate 'x'</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Normality Calculator?</h5>
+            <p>The procedure to use the normality calculator is as follows:<br>
+                <strong>Step 1:</strong> Enter the equivalent of the solute, litres of solution and x for the unknown in
+                the input field. <br>
+                <strong>Step 2:</strong> Now click the button “Calculate x” to get the normality.<br>
+                <strong>Step 3:</strong> Finally, the normality of the chemical solution will be displayed in the output
+                field.
+            </p>
+            <h5>What is Meant by the Normality?</h5>
+            <p>In chemistry, the normality of the solution is defined as the equivalent concentration of the solution.
+                It is generally used to measure the concentration of the solution, which is equal to the ratio of gram
+                equivalent weight to the litres of the solution. The gram equivalent weight defines the measurement of
+                the reactive capacity of a molecule. The normality is represented by the letter “N”. The formula to
+                calculate the normality of the solution is given by<br>
+                <strong>Normality, N = Equivalent of solute/Litres of Solution</strong></p>
+        </div>
+        <!-- html code ends -->
+
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let e = document.getElementById("equivalent");
+                let E = e.value;
+                let l = document.getElementById("liters");
+                let L = l.value;
+                let n = document.getElementById("normality");
+                let N = n.value;
+                let Output = document.getElementById("output");
+                if (isNaN(E) && E != 'x' || E == "") {
+                    e.removeAttribute("class");
+                    e.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    e.removeAttribute("class");
+                    e.setAttribute("class", "form-control");
+                }
+                if (isNaN(L) && L != 'x' || L == "") {
+                    l.removeAttribute("class");
+                    l.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    l.removeAttribute("class");
+                    l.setAttribute("class", "form-control");
+                }
+                if (isNaN(N) && N != 'x' || N == "") {
+                    n.removeAttribute("class");
+                    n.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    n.removeAttribute("class");
+                    n.setAttribute("class", "form-control");
+                }
+                let equivalent = N * L;
+                let liters = (E / (N * 1.0));
+                let normality = (E / (L * 1.0));
+                if (Output.value != NaN) {
+                    if (E == 'x' && L != 'x' && N != 'x') Output.innerText = equivalent;
+                    else if (L == 'x' && E != 'x' && N != 'x') Output.innerText = liters;
+                    else if (N == 'x' && L != 'x' && E != 'x') Output.innerText = normality;
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Dilution Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 500px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Dilution Calculator</h4>
+            <strong>Formula: Dilution of
+                Solutions:</strong>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1">Volume After Dilution (V<sub>2</sub>) =
+                        (V<sub>1</sub> * M <sub>1</sub>)&nbsp;/ M <sub>2</sub></span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Volume Of Solvent Added During
+                        Dilution (V) = (V <sub>2</sub> − V <sub>1</sub>)</span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Enter the unknown value as ‘x’</span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume Before Dilution (V <sub>1</sub>) :</span>
+                </div>
+                <input type="text" class="form-control" id="volumeBefore" placeholder="L">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Concentration Before Dilution (M<sub>1</sub>):</span>
+                </div>
+                <input type="text" class="form-control" id="concentrationBefore" placeholder="mol/L">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Volume After Dilution (V <sub>2</sub>) :</span>
+                </div>
+                <input type="text" class="form-control" id="volumeAfter" placeholder="L">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Concentration After Dilution (M<sub>2</sub>):</span>
+                </div>
+                <input type="text" class="form-control" id="concentrationAfter" placeholder="mol/L">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate</button>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-append btn input-group-text text-light">The value of (V) =
+                </div>
+                <output id="outputVolume" class="form-control"></output>
+            </div>
+            <hr>
+            <h5>What is Meant by Dilution?</h5>
+            <p>In Chemistry, dilution is a process in which the concentration of the solute in the solution is reduced.
+                This process is carried out by usually adding more solvent. Usually, the acid or the base is mixed with
+                the water to reduce the concentration of the ions in the solution. This process is called the dilution
+                process. The process of dissolving acid or base with water is considered as a highly exothermic
+                reaction.
+            </p>
+            <h5>How to Use the Dilution Calculator?</h5>
+            <p>The procedure to use the dilution calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the volume and the concentration of the solution before dilution in the respective
+                input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate X and Volume of Solvent” to get the result. <br>
+
+                <b>Step 3:</b> Finally, the volume of the concentration after dilution will be displayed in the output
+                field.<br>
+            </p>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let vb = document.getElementById("volumeBefore");
+                let VB = vb.value;
+                let cb = document.getElementById("concentrationBefore");
+                let CB = cb.value;
+                let va = document.getElementById("volumeAfter");
+                let VA = va.value;
+                let ca = document.getElementById("concentrationAfter");
+                let CA = ca.value;
+                let Output = document.getElementById("output");
+                let OutputVolume = document.getElementById("outputVolume");
+                if (isNaN(VB) && VB != 'x' || VB == "") {
+                    vb.removeAttribute("class");
+                    vb.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    vb.removeAttribute("class");
+                    vb.setAttribute("class", "form-control");
+                }
+                if (isNaN(CB) && CB != 'x' || CB == "") {
+                    cb.removeAttribute("class");
+                    cb.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    cb.removeAttribute("class");
+                    cb.setAttribute("class", "form-control");
+                }
+                if (isNaN(VA) && VA != 'x' || VA == "") {
+                    va.removeAttribute("class");
+                    va.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    va.removeAttribute("class");
+                    va.setAttribute("class", "form-control");
+                }
+                if (isNaN(CA) && CA != 'x' || CA == "") {
+                    ca.removeAttribute("class");
+                    ca.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ca.removeAttribute("class");
+                    ca.setAttribute("class", "form-control");
+                }
+                let v1 = (VA * CA * 1.0) / CB;
+                let m1 = (VA * CA * 1.0) / VB;
+                let v2 = (VB * CB * 1.0) / CA;
+                let m2 = (VB * CB * 1.0) / VA;
+                if (Output.value != NaN) {
+                    if (VB == 'x' && CB != 'x' && VA != 'x' && CA != 'x') { Output.innerText = v1; OutputVolume.innerText = `${VA - v1} L`; }
+                    else if (VB != 'x' && CB == 'x' && VA != 'x' && CA != 'x') { Output.innerText = m1; OutputVolume.innerText = `${VA - VB} L`; }
+                    else if (VB != 'x' && CB != 'x' && VA == 'x' && CA != 'x') { Output.innerText = v2; OutputVolume.innerText = `${v2 - VB} L`; }
+                    else if (VB != 'x' && CB != 'x' && VA != 'x' && CA == 'x') { Output.innerText = m2; OutputVolume.innerText = `${VA - VB} L`; }
+                    else {
+                        alert(`Have you entered all the values? Please put "x" for one box. This is the value which will be calculated.`);
+                    }
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

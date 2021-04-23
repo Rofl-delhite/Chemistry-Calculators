@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Molar Mass of A Gas Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 450px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Molar Mass of A Gas Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1">
+                        Formula = ( 0.0821 * P * V * W ) / T
+                    </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter the volume of a gas (V) =</span>
+                </div>
+                <input type="text" class="form-control" id="volume" placeholder="Cm&#179;">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter the mass of a gas (W) = </span>
+                </div>
+                <input type="text" class="form-control" id="mass" placeholder="g">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter the temperature (T) =</span>
+                </div>
+                <input type="text" class="form-control" id="temperature" placeholder="Celcius">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter the pressure of a gas (P) =</span>
+                </div>
+                <input type="text" class="form-control" id="pressure" placeholder="atm">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate Molar Mass</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let v = document.getElementById("volume");
+                let V = v.value;
+                let m = document.getElementById("mass");
+                let M = m.value;
+                let t = document.getElementById("temperature");
+                let T = t.value;
+                let p = document.getElementById("pressure");
+                let P = p.value;
+                let Output = document.getElementById("output");
+                if (isNaN(V) || V == "") {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    v.removeAttribute("class");
+                    v.setAttribute("class", "form-control");
+                }
+                if (isNaN(M) || M == "") {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    m.removeAttribute("class");
+                    m.setAttribute("class", "form-control");
+                }
+                if (isNaN(T) || T == "") {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control");
+                }
+                if (isNaN(P) || P == "") {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    p.removeAttribute("class");
+                    p.setAttribute("class", "form-control");
+                }
+                let molarMass = (0.0821 * P * V * M) / T
+                if (!isNaN(molarMass)) {
+                    Output.innerText = molarMass;
+                }
+                else {
+                    alert("Have you entered all the values ? please check again.");
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Isoelectric Point Calculator
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 500px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Isoelectric Point Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1">Isoelectric Point Formula: pI=
+                        ( pKa + pKb ) / 2
+                    </span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter Dissociation Constant of Acid (pKa) =</span>
+                </div>
+                <input type="text" class="form-control" id="acidConstant" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Enter Dissociation Constant of Base (pKa) =</span>
+                </div>
+                <input type="text" class="form-control" id="baseConstant" placeholder="">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate Isoelectric Point</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Isoelectric Point Calculator?</h5>
+            <p>The procedure to use the dilution calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the dissociation constant of the acid and base in the input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate” to get the result. <br>
+
+                <b>Step 3:</b> Finally, the isoelectric point will be displayed in the output field.<br>
+            </p>
+            <h5>What is Meant by Isoelectric Point?</h5>
+            <p>The isoelectric point is the pH, at which the molecule does not carry any net electric charge. It means
+                that it is electrically neutral in its statistical mean value. The isoelectric point is represented by
+                pl, pH(l) or IEP. In this, the standard representation is pH(l). The isoelectric point value will affect
+                the solubility of the molecules at the given pH value. Generally, the net electric charge of the
+                molecule is affected by the pH value of its surrounding medium.
+            </p>
+        </div>
+
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let ac = document.getElementById("acidConstant");
+                let AC = ac.value;
+                let bc = document.getElementById("baseConstant");
+                let BC = bc.value;
+                let Output = document.getElementById("output");
+                if (isNaN(AC) || AC == "") {
+                    ac.removeAttribute("class");
+                    ac.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    ac.removeAttribute("class");
+                    ac.setAttribute("class", "form-control");
+                }
+                if (isNaN(BC) || BC == "") {
+                    bc.removeAttribute("class");
+                    bc.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    bc.removeAttribute("class");
+                    bc.setAttribute("class", "form-control");
+                }
+                let isoelectricPoint = (parseFloat(AC) + parseFloat(BC)) / 2;
+                if (!isNaN(isoelectricPoint)) {
+                    Output.innerText = isoelectricPoint;
+                }
+                else {
+                    alert("Have you entered all the values ? please check again.");
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>
