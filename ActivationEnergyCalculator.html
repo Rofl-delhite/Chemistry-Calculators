@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0 ,width=device-width, initial-scale=1.0">
+    <title>Activation Energy Calculation
+    </title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div dir="ltr" style="text-align: left" trbidi="on">
+        <!-- Styling starts-->
+        <style>
+            #calcDiv {
+                width: 420px;
+                overflow: auto;
+                background-color: #dbe4e7;
+            }
+
+            .input-group-text {
+                background-color: #0061AE;
+                color: whitesmoke;
+            }
+
+            h5,
+            h4 {
+                color: #0061AE;
+            }
+
+            p {
+                text-align: left;
+            }
+        </style>
+        <!-- styling ends -->
+
+        <!-- html code starts -->
+        <div class="container text-center my-5 border rounded" id="calcDiv">
+            <h4 class="mt-2">Activation Energy Calculator</h4>
+            <div class="input-group justify-content-center mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right mb-1">Activation Energy (E
+                        <sub>a</sub>) =
+                        −RT&nbsp;<em>ln</em>&nbsp;<sup>K</sup>/<sub>A</sub></span>
+                </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text rounded-right rounded-left mb-1">Universal
+                        Gas
+                        Constant(R) = 8.31447215 JK<sup>−1</sup>&nbsp;mol<sup>−1</sup></span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Temprature (T)</span>
+                </div>
+                <input type="text" class="form-control" id="temperature" placeholder="K">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Rate Constant (K)</span>
+                </div>
+                <input type="text" class="form-control" id="rateConstant" placeholder="mol/sec">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Frequency Factor (A)</span>
+                </div>
+                <input type="text" class="form-control" id="frequencyFactor" placeholder="sec&#8315;&sup1;">
+            </div>
+            <div class="input-group mb-3">
+                <output id="output" class="form-control"></output>
+                <div class="input-group-append">
+                    <button class="btn input-group-text text-light" id="button">Calculate</button>
+                </div>
+            </div>
+            <hr>
+            <h5>How to Use the Activation Energy Calculator?</h5>
+            <p>The procedure to use the activation energy calculator is as follows: <br>
+
+                <b>Step 1:</b> Enter the temperature, frequency factor and rate constant in the input field.
+                <br>
+
+                <b>Step 2:</b> Now click the button “Calculate” to get the result. <br>
+
+                <b>Step 3:</b> Finally, the activation energy required for the atoms or molecules will be
+                displayed
+                in the
+                output field. <br>
+            </p>
+            <h5> What is Meant by Activation Energy?</h5>
+            <p> In Chemistry, activation energy is defined as the least amount of energy which is
+                required to stimulate
+                the atoms or molecules to undergo the chemical reaction. Generally, all the chemical reactions
+                require activation energy, so that the reactants can move together, and start breaking the
+                bonds.
+                The activation energy is represented by E<sub>a</sub>. It does not depend on the pressure,
+                temperature, volume, coefficient of the reactant, or the concentration of the solution.
+            </p>
+        </div>
+        <!-- html code ends -->
+        <!-- scripting starts -->
+        <script>
+            document.getElementById('button').addEventListener('click', () => {
+                let t = document.getElementById("temperature");
+                let T = t.value;
+                let k = document.getElementById("rateConstant");
+                let K = k.value;
+                let a = document.getElementById("frequencyFactor");
+                let A = a.value;
+                let Output = document.getElementById("output");
+                let R = 8.31447215;
+                if (isNaN(T) || T == "" || T.includes(" ")) {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    t.removeAttribute("class");
+                    t.setAttribute("class", "form-control");
+                }
+                if (isNaN(K) || K == "" || K.includes(" ")) {
+                    k.removeAttribute("class");
+                    k.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    k.removeAttribute("class");
+                    k.setAttribute("class", "form-control");
+                }
+                if (isNaN(A) || A == "" || A.includes(" ")) {
+                    a.removeAttribute("class");
+                    a.setAttribute("class", "form-control border-danger");
+                }
+                else {
+                    a.removeAttribute("class");
+                    a.setAttribute("class", "form-control");
+                }
+                let activationEnergy = -(R * T) * Math.log(K / parseFloat(A));
+                if (!isNaN(activationEnergy)) {
+                    Output.innerText = Math.round((activationEnergy + Number.EPSILON) * 100) / 100 + " J/mol";
+                }
+            })
+        </script>
+        <!-- scripting ends -->
+    </div>
+</body>
+
+</html>
